@@ -1,8 +1,9 @@
 using System;
+using Gregslist.Controllers;
 
-namespace Gregslist.Controllers
+namespace Gregslist
 {
-  class MenuController
+  class Menu
   {
     public CarsController carsController {get; set;} =  new CarsController();
     public bool _Running { get; set; } = true;
@@ -13,11 +14,11 @@ namespace Gregslist.Controllers
       } 
     }
 
-    private void GetUserInput()
+    public void GetUserInput()
     {
       Console.Clear();
       Utils.Printlogo();
-      Console.WriteLine("Select what you are looking for Today. (V)ehicles, (H)ouses, (J)obs");
+      Console.WriteLine("\n\nSelect what you are looking for Today. (V)ehicles, (H)ouses, (J)obs, (Q)uit");
       string input = Console.ReadLine().ToLower();
       switch (input)
       {
@@ -33,6 +34,10 @@ namespace Gregslist.Controllers
         case "j":
           break;
           // GetJobs();
+        case "quit":
+        case "q":
+          _Running = false;
+          break;
         default:
           Console.WriteLine("Invalid Selection");
           break;

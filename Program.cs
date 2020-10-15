@@ -1,5 +1,5 @@
 ﻿using System;
-using Gregslist.Controllers;
+
 
 namespace Gregslist
 {
@@ -12,7 +12,7 @@ namespace Gregslist
             Console.ForegroundColor = ConsoleColor.Magenta;
             
 
-            new MenuController().Run();
+            new Menu().Run();
 
         }
     }

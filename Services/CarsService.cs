@@ -9,26 +9,27 @@ namespace Gregslist.Services
   {
     public List<IPurchaseable> Purchaseables { get; set;}
 
-    internal string GetVehicles(bool avaliable)
+     internal string Get(bool avaliable, string selection)
     {
       var vehicles = Purchaseables.FindAll(v => v.IsAvaliable == avaliable);
-      if(vehicles.Count == 0){
-        return "Nothing Avaliable";
+      if(vehicles.Count == 0)
+      {
+        return "Nothing Here Sorry!";
       }
-      string carList = "";
-      string truckList = "";
+      string list = "";
       for (int i = 0; i < vehicles.Count; i++)
       {
-       var vehicle = vehicles[i];
-       if(vehicle is Car){
-         var car = (Car)vehicle;
-         carList += $"{i + 1}. Make:{car.Make} Model:{car.Model} Year:{car.Year} Transmission:{car.Transmission} Fuel:{car.Fuel} Location:{car.Location} Price:{car.Price}\n";
-       } else if(vehicle is Truck){
-         var truck = (Truck)vehicle;
-         truckList += $"{i + 1}. Make:{truck.Make} Model:{truck.Model} Year:{truck.Year} DriveTrain:{truck.FourWheelDrive} Location:{truck.Location} Price:{truck.Price}\n";
-       }   
+          var vehicle = vehicles[i];
+        if(selection == "cars" && vehicle is Car || selection == "all" && vehicle is Car){
+          var car = (Car)vehicle;
+          list += $"{i + 1}. Make: {car.Make} Model: {car.Model} Year: {car.Year}\n";
+        } else if (selection == "trucks" && vehicle is Truck || selection == "all" && vehicle is Truck)
+        {
+          var truck = (Truck)vehicle;
+          list += $"{i + 1}. Make:{truck.Make} Model:{truck.Model} Year:{truck.Year}\n";
+        }
       }
-      return "Cars\n" + carList + "Trucks\n" + truckList;
+      return "\n\n" + selection.ToUpper() + "\n\n" + list;
     }
     public CarsService()
     {
@@ -45,6 +46,10 @@ namespace Gregslist.Services
         new Truck("Chevorlet","HD2500",2010,6,"Four Wheel Drive", true, 20000.00,"Utah")
       };
     }
-    
+
+    internal bool GetDetails(int v)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
