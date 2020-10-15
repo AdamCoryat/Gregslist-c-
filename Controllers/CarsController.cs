@@ -49,8 +49,29 @@ namespace Gregslist.Controllers
       string intStr = Console.ReadLine();
       if (int.TryParse(intStr, out int index) && index > 0)
       {
+        Console.Clear();
+        Utils.PrintCarDetails();
         Console.WriteLine(_Service.GetDetails(index - 1));
-        Thread.Sleep(2000);
+        Console.WriteLine("\nWould you like to (B)uy or go B(a)ck");
+        string input = Console.ReadLine().ToLower();
+        switch (input)
+        {
+            case "buy":
+            case "b":
+              Console.Clear();
+              Utils.PrintCarDetails();
+              Console.WriteLine(_Service.Buy(index - 1));
+              Thread.Sleep(4000);
+              Console.Beep();
+              break;
+            case "back":
+            case "a":
+              GetCars();
+              break;  
+            default:
+              Console.WriteLine("Invalid Selection try Again");
+              break;
+        }
         Console.Clear();
       }
     }
@@ -60,7 +81,35 @@ namespace Gregslist.Controllers
       Console.Clear();
       Utils.PrintCarLogo();
       Console.WriteLine(_Service.Get(true, "trucks"));
-      Console.ReadLine();
+      Console.WriteLine("Select the # of the vehicle you want more info on.");
+      string intStr = Console.ReadLine();
+      if (int.TryParse(intStr, out int index) && index > 0)
+      {
+        Console.Clear();
+        Utils.PrintTruckDetails();
+        Console.WriteLine(_Service.GetDetails(index - 1));
+        Console.WriteLine("\nWould you like to (B)uy or go B(a)ck");
+        string input = Console.ReadLine().ToLower();
+        switch (input)
+        {
+            case "buy":
+            case "b":
+              Console.Clear();
+              Utils.PrintTruckDetails();
+              Console.WriteLine(_Service.Buy(index - 1));
+              Thread.Sleep(4000);
+              Console.Beep();
+              break;
+            case "back":
+            case "a":
+              GetTrucks();
+              break;  
+            default:
+              Console.WriteLine("Invalid Selection try Again");
+              break;
+        }
+        Console.Clear();
+      }
     }
 
     private void GetAll()

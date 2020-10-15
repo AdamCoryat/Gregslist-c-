@@ -31,6 +31,27 @@ namespace Gregslist.Services
       }
       return "\n\n" + selection.ToUpper() + "\n\n" + list;
     }
+
+    internal string GetDetails(int index)
+    {
+      var vehicle = Purchaseables[index];
+      if (vehicle is Car)
+      {
+        var car = (Car)vehicle;
+        return $" Make: {car.Make}\n Model: {car.Model}\n Year: {car.Year}\n Doors:{car.Doors}\n Fuel Type:{car.Fuel}\n Transmission: {car.Transmission}\n Location: {car.Location}\n Price: {car.Price}";
+      } else if (vehicle is Truck)
+      {
+        var truck = (Truck)vehicle;
+         return $" Make: {truck.Make}\n Model: {truck.Model}\n Year: {truck.Year}\n Bed Length:{truck.BedLength}\n Drive Train:{truck.FourWheelDrive}\n Location: {truck.Location}\n Price: {truck.Price}";
+      }
+      return "Invalid Entry.";
+    }
+
+    internal string Buy(int index)
+    {
+      Purchaseables[index].IsAvaliable = false;
+      return "Congrats on your purchase!";
+    }
     public CarsService()
     {
       Purchaseables = new List<IPurchaseable>(){
@@ -47,9 +68,6 @@ namespace Gregslist.Services
       };
     }
 
-    internal bool GetDetails(int v)
-    {
-      throw new NotImplementedException();
-    }
+    
   }
 }
