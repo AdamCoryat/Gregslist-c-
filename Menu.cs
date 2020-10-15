@@ -6,6 +6,7 @@ namespace Gregslist
   class Menu
   {
     public CarsController carsController {get; set;} =  new CarsController();
+    public BuildingsController buildingsController {get; set;} = new BuildingsController();
     public bool _Running { get; set; } = true;
      public void Run()
     {
@@ -18,7 +19,7 @@ namespace Gregslist
     {
       Console.Clear();
       Utils.Printlogo();
-      Console.WriteLine("\n\nSelect what you are looking for Today. (V)ehicles, (H)ouses, (J)obs, (Q)uit");
+      Console.WriteLine("\n\nSelect what you are looking for Today. (V)ehicles, (B)uildings, (J)obs, (Q)uit");
       string input = Console.ReadLine().ToLower();
       switch (input)
       {
@@ -26,9 +27,9 @@ namespace Gregslist
         case "v":
           carsController.VehiclesMenu();
           break;
-        case "houses":
-        case "h":
-          // GetHouses();
+        case "buildlings":
+        case "b":
+          buildingsController.BuildingMenu();
           break;
         case "jobs":
         case "j":
