@@ -12,7 +12,7 @@ class Vehicle : IPurchaseable
     public int Year { get; set; }
     public bool IsAvaliable { get; set; }
 
-     public double CalcualteTax()
+     public double CalculateTax()
     {
       return Price + (Price * .07);
     }

@@ -104,7 +104,36 @@ namespace Gregslist.Controllers
 
     private void CreateCar()
     {
-      throw new NotImplementedException();
+      Console.Clear();
+      Utils.PrintCarLogo();
+      Console.WriteLine("Please enter the information as promted");
+      Thread.Sleep(1000);
+      Console.Write("Make: ");
+      string make = Console.ReadLine();
+      Console.Write("Model: ");
+      string model = Console.ReadLine();
+      Console.Write("Year: ");
+      var yearStr = Console.ReadLine();
+      int.TryParse(yearStr, out int year);
+      Console.Write("Doors: ");
+      var doorStr = Console.ReadLine();
+      int.TryParse(doorStr, out int door);
+      Console.Write("Fuel Type:");
+      string fuel = Console.ReadLine();
+      Console.Write("Transmission:");
+      string transmission = Console.ReadLine();
+      Console.Write("Location: ");
+      string location = Console.ReadLine();
+      Console.Write("Price: ");
+      var priceStr = Console.ReadLine();
+      double.TryParse(priceStr, out double price);
+      Car newCar = new Car(make,model,year,door,fuel,transmission,location,price);
+      _Service.CreateCar(newCar);
+      Console.Clear();
+      Utils.PrintCarDetails();
+      Console.WriteLine("Thanks for using Gregs List to post your Car!");
+      Thread.Sleep(3000);
+      GetCars();
     }
 
     private void GetCars()

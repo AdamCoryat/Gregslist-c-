@@ -5,6 +5,6 @@ namespace Gregslist.Interfaces
     double Price { get; }
     string Location { get; }
     bool IsAvaliable { get; set; }
-    double CalcualteTax();
+    double CalculateTax();
   }
 }
