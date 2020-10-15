@@ -42,15 +42,22 @@ namespace Gregslist.Services
       } else if (vehicle is Truck)
       {
         var truck = (Truck)vehicle;
-         return $" Make: {truck.Make}\n Model: {truck.Model}\n Year: {truck.Year}\n Bed Length:{truck.BedLength}\n Drive Train:{truck.FourWheelDrive}\n Location: {truck.Location}\n Price: {truck.Price}";
+         return $" Make: {truck.Make}\n Model: {truck.Model}\n Year: {truck.Year}\n Bed Length:{truck.BedLength}ft\n Drive Train:{truck.DriveTrain}\n Fuel Type:{truck.Fuel}\n Location: {truck.Location}\n Price: {truck.Price}";
       }
       return "Invalid Entry.";
     }
-
     internal string Buy(int index)
     {
       Purchaseables[index].IsAvaliable = false;
       return "Congrats on your purchase!";
+    }
+    internal void CreateTruck(Truck newTruck)
+    {
+      Purchaseables.Add(newTruck);
+    }
+    internal void CreateCar(Car newCar)
+    {
+      Purchaseables.Add(newCar);
     }
     public CarsService()
     {
@@ -61,10 +68,10 @@ namespace Gregslist.Services
         new Car("Nissan","GTR Black Edition", 2018, 2, "E85", "Six-Speed", "New York", 125000.00),
         new Car("Honda","Civic", 1997, 2, "Gasoline", "Automatic", "Boise", 500.00),
         new Car("Toyota","Supra", 1998, 2, "E85", "Six-Speed", "Florida", 85000.00),
-        new Truck("Toyota","Tacoma",2008,6,"Four Wheel Drive", false, 15000.00,"Idaho"),
-        new Truck("Toyota","Tundra",2010,7,"Four Wheel Drive", false, 17000.00,"California"),
-        new Truck("Dodge","Ram 2500",1997,7,"Two Wheel Drive", true, 7000.00,"Idaho"),
-        new Truck("Chevorlet","HD2500",2010,6,"Four Wheel Drive", true, 20000.00,"Utah")
+        new Truck("Toyota","Tacoma",2008,6,"Four Wheel Drive", "Gasoline", 15000.00,"Idaho"),
+        new Truck("Toyota","Tundra",2010,7,"Four Wheel Drive", "Gasoline", 17000.00,"California"),
+        new Truck("Dodge","Ram 2500",1997,7,"Two Wheel Drive", "Diesel", 7000.00,"Idaho"),
+        new Truck("Chevorlet","HD2500",2010,6,"Four Wheel Drive","Diesel", 20000.00,"Utah")
       };
     }
 
